@@ -1,0 +1,175 @@
+import java.util.Scanner;
+class Main {
+  public static void main(String[] args) {
+    int Checker = 0;
+    String Oper = "";
+    String N1 = "0";
+    String N2 = "0";
+    String Rep = "";
+    int Finish = 0;
+    int RepTest = 0;
+    int NCount = 0;
+    double Answer;
+    Scanner Operation = new Scanner(System.in);
+    Scanner Firstnum = new Scanner(System.in);
+    Scanner Secondnum = new Scanner(System.in);
+    Scanner Repeat = new Scanner(System.in);
+    while(Finish == 0){
+      RepTest = 0;
+      System.out.println("Please enter what operation you want to do(add,subtract,multiply,or divide, square, squareRoot, sin, cos, tan, log, exponential)");
+      while (Checker == 0){
+        Oper = Operation.nextLine();
+        if(Oper.equals("add")){
+          Checker++;
+          NCount = 2;
+        }
+        else if(Oper.equals("subtract")){
+          Checker++;
+          NCount = 2;
+        }
+        else if(Oper.equals("multiply")){
+          Checker++;
+          NCount = 2;
+        }
+        else if(Oper.equals("divide")){
+          Checker++;
+          NCount = 2;
+        }
+        else if(Oper.equals("square")){
+          Checker++;
+          NCount = 1;
+        }
+        else if(Oper.equals("squareRoot")){
+          Checker++;
+          NCount = 1;
+        }
+        else if(Oper.equals("sin")){
+          Checker++;
+          NCount = 1;
+        }
+        else if(Oper.equals("cos")){
+          Checker++;
+          NCount = 1;
+        }
+        else if(Oper.equals("tan")){
+          Checker++;
+          NCount = 1; 
+        }
+        else if(Oper.equals("log")){
+          Checker++;
+          NCount = 1;
+        }
+        else if(Oper.equals("exponential")){
+          Checker++;
+          NCount = 1; 
+        }
+        else{
+          System.out.println("Please enter a valid operation.");
+          Checker = 0;
+        }
+      }
+      int N1C = 0;
+      int N2C = 0;
+      double N1CTest = 0;
+      while (N1C == 0){
+        System.out.println("Please enter your first number.");
+        N1 = Firstnum.nextLine();
+        try {
+          N1CTest = Double.valueOf(N1);
+          if(Oper.equals("squareRoot") && N1CTest < 0){
+            System.out.println("Please don't take the square root of a negative number, enter a new number please");
+            N1C = 0;
+          }
+          else if(Oper.equals("log") && Double.valueOf(N1) < 1){
+            System.out.println("You cannot take the log of zero or a negative number, please enter a new number.");
+            N1C = 0;
+          }
+          else if(N1.matches("-?\\d+(\\.\\d+)?")){
+            N1C = 1;
+          }
+          else{
+            System.out.println("Thats not a number");
+            N1C = 0;
+          }
+        }
+        catch(Exception e){
+          System.out.println("That is not a number.");
+          N1C = 0;
+        }
+      }
+      if(NCount == 2){
+        while (N2C == 0){
+          System.out.println("Please enter your second number.");
+          N2 = Secondnum.nextLine();
+          if(N2.equals("0") && Oper.equals("divide")){
+            System.out.println("You cannot devide by zero, please choose a different number.");
+            N2C = 0;
+          }
+          else if(N2.matches("-?\\d+(\\.\\d+)?")){
+            N2C = 1;
+          }
+          else{
+            System.out.println("Thats not a number");
+            N2C = 0;
+          }
+        }
+      }
+      if(Oper.equals("add")){
+        Answer = Double.valueOf(N1) + Double.valueOf(N2);
+      }
+      else if(Oper.equals("subtract")){
+        Answer = Double.valueOf(N1) - Double.valueOf(N2);
+      }
+      else if(Oper.equals("multiply")){
+        Answer = Double.valueOf(N1) * Double.valueOf(N2);
+      }
+      else if(Oper.equals("divide")){
+        Answer = Double.valueOf(N1) / Double.valueOf(N2);
+      }
+      else if(Oper.equals("square")){
+        Answer = Double.valueOf(N1) * Double.valueOf(N1);
+      }
+      else if(Oper.equals("squareRoot")){
+        Answer = Math.sqrt((Double.valueOf(N1)));
+      }
+      else if(Oper.equals("sin")){
+        Answer = Math.sin((Double.valueOf(N1)));
+      }
+      else if(Oper.equals("cos")){
+        Answer = Math.cos((Double.valueOf(N1)));
+      }
+      else if(Oper.equals("tan")){
+        Answer = Math.tan((Double.valueOf(N1)));
+      }
+      else if(Oper.equals("log")){
+        Answer = Math.log((Double.valueOf(N1)));
+      }
+      else{
+        Answer = Math.exp((Double.valueOf(N1)));
+      }
+      System.out.println("The answer is: " + Answer);
+      System.out.println("Would you like to do another equation? If so enter yes, if you want to exit, then enter exit.");
+      while(RepTest == 0){
+        Rep = Repeat.nextLine();
+        if(Rep.equals("yes")){
+          Finish = 0;
+          Checker = 0;
+          N1C = 0;
+          N2C = 0;
+          N1 = "";
+          N2 = "";
+          RepTest = 1;
+        }
+        else if(Rep.equals("exit")){
+          Finish = 1;
+          RepTest = 1;
+        }
+        else{
+          System.out.println("Please enter a valid option.");
+          RepTest = 0;
+        }
+      }
+    }
+    System.out.print("Have a good day!");
+  }
+}
